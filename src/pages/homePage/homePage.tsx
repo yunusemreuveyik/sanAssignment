@@ -2,6 +2,7 @@ import React from "react";
 import { useQuery } from "@tanstack/react-query";
 import { postsQueryOptions } from "../../api/queries/postQueryOptions";
 import { commentsQueryOptions } from "../../api/queries/commentQueryOptions";
+import "./homePage.scss";
 
 const Home: React.FC = () => {
   const {
@@ -16,17 +17,17 @@ const Home: React.FC = () => {
   } = useQuery(commentsQueryOptions);
 
   return (
-    <div className="p-4">
-      <h1 className="text-xl mb-4">Dashboard</h1>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div className="border p-4">
-          <h2 className="font-bold mb-2">Recent Posts</h2>
+    <div className="home">
+      <h1 className="home__title">Dashboard</h1>
+      <div className="home__grid">
+        <div className="home__card">
+          <h2 className="home__card-title">Recent Posts</h2>
           {postsLoading && <p>Loading posts...</p>}
-          {postsError && <p>Error loading posts.</p>}
+          {postsError && <p className="home__error">Error loading posts.</p>}
           {posts && (
-            <ul>
+            <ul className="home__list">
               {posts.slice(0, 5).map((post: any) => (
-                <li key={post.id} className="py-1 border-b">
+                <li key={post.id} className="home__list-item">
                   {post.title}
                 </li>
               ))}
@@ -34,14 +35,16 @@ const Home: React.FC = () => {
           )}
         </div>
 
-        <div className="border p-4">
-          <h2 className="font-bold mb-2">Recent Comments</h2>
+        <div className="home__card">
+          <h2 className="home__card-title">Recent Comments</h2>
           {commentsLoading && <p>Loading comments...</p>}
-          {commentsError && <p>Error loading comments.</p>}
+          {commentsError && (
+            <p className="home__error">Error loading comments.</p>
+          )}
           {comments && (
-            <ul>
+            <ul className="home__list">
               {comments.slice(0, 5).map((comment: any) => (
-                <li key={comment.id} className="py-1 border-b">
+                <li key={comment.id} className="home__list-item">
                   {comment.name}
                 </li>
               ))}
