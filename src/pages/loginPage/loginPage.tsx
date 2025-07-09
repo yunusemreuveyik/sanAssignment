@@ -1,15 +1,20 @@
-import React from "react";
-import { useAuth } from "../../context/useAuth";
+import React, { useEffect } from "react";
+import { useAuth } from "../../api/useAuth";
 import { useNav } from "../../nav";
 
 const LoginPage: React.FC = () => {
-  const { login } = useAuth();
+  const { login, user } = useAuth();
   const { go } = useNav();
 
   const handleLogin = () => {
-    login(); // Sets the dummy user in React Query
-    go("home"); // Redirect to home/dashboard page
+    login();
   };
+
+  useEffect(() => {
+    if (user) {
+      go("home");
+    }
+  }, [user, go]);
 
   return (
     <div className="flex flex-col items-center justify-center h-screen bg-gray-100">

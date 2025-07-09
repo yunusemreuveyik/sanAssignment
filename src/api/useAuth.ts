@@ -1,5 +1,4 @@
-// src/hooks/useAuth.ts
-import { useQueryClient } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import type { User } from "../models/userModel";
 
 const USER: User = {
@@ -12,7 +11,16 @@ const USER: User = {
 export const useAuth = () => {
   const queryClient = useQueryClient();
 
-  const login = () => {
+  const { data: user } = useQuery({
+    queryKey: ["user"],
+    queryFn: async () => {
+      const cachedUser = queryClient.getQueryData<User>(["user"]);
+      if (cachedUser) return cachedUser;
+      return null;
+    },
+  });
+
+  const login = async () => {
     queryClient.setQueryData(["user"], USER);
   };
 
@@ -20,6 +28,5 @@ export const useAuth = () => {
     queryClient.removeQueries({ queryKey: ["user"] });
   };
 
-  const user = queryClient.getQueryData<User>(["user"]);
   return { user, login, logout };
 };

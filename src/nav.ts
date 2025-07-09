@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "./context/useAuth"; // Adjust if path differs
+import { useAuth } from "./api/useAuth"; // Adjust if path differs
 import type { RouteConfig } from "./models/routeConfigModel";
 import { routes } from "./routes/routes";
 
@@ -41,7 +41,6 @@ export const useNav = () => {
       route.permissions.length > 0 &&
       !route.permissions.every((p) => user?.permissions.includes(p))
     ) {
-      alert("You don't have permission to access this page.");
       navigate("/403");
       return;
     }
