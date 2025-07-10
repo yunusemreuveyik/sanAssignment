@@ -3,8 +3,11 @@ import { useQuery } from "@tanstack/react-query";
 import { postsQueryOptions } from "../../api/queries/postQueryOptions";
 import { commentsQueryOptions } from "../../api/queries/commentQueryOptions";
 import "./homePage.scss";
+import { useTranslation } from "react-i18next";
 
 const Home: React.FC = () => {
+  const { t } = useTranslation("homePage");
+
   const {
     data: posts,
     isLoading: postsLoading,
@@ -18,12 +21,12 @@ const Home: React.FC = () => {
 
   return (
     <div className="home">
-      <h1 className="home__title">Dashboard</h1>
+      <h1 className="home__title">{t("dashboardTitle")}</h1>
       <div className="home__grid">
         <div className="home__card">
-          <h2 className="home__card-title">Recent Posts</h2>
-          {postsLoading && <p>Loading posts...</p>}
-          {postsError && <p className="home__error">Error loading posts.</p>}
+          <h2 className="home__card-title">{t("recentPosts")}</h2>
+          {postsLoading && <p>{t("loadingPosts")}</p>}
+          {postsError && <p className="home__error">{t("errorPosts")}</p>}
           {posts && (
             <ul className="home__list">
               {posts.slice(0, 5).map((post: any) => (
@@ -36,11 +39,9 @@ const Home: React.FC = () => {
         </div>
 
         <div className="home__card">
-          <h2 className="home__card-title">Recent Comments</h2>
-          {commentsLoading && <p>Loading comments...</p>}
-          {commentsError && (
-            <p className="home__error">Error loading comments.</p>
-          )}
+          <h2 className="home__card-title">{t("recentComments")}</h2>
+          {commentsLoading && <p>{t("loadingComments")}</p>}
+          {commentsError && <p className="home__error">{t("errorComments")}</p>}
           {comments && (
             <ul className="home__list">
               {comments.slice(0, 5).map((comment: any) => (

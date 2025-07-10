@@ -1,0 +1,9 @@
+{
+  "dashboardTitle": "Dashboard",
+  "recentPosts": "Recent Posts",
+  "loadingPosts": "Loading posts...",
+  "errorPosts": "Error loading posts.",
+  "recentComments": "Recent Comments",
+  "loadingComments": "Loading comments...",
+  "errorComments": "Error loading comments."
+}
