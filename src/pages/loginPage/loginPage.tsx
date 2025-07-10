@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useAuth } from "../../api/useAuth";
 import { useNav } from "../../routes/nav";
+import { routeNames } from "../../routes/routes";
 
 const LoginPage: React.FC = () => {
   const { login, user } = useAuth();
@@ -12,7 +13,7 @@ const LoginPage: React.FC = () => {
 
   useEffect(() => {
     if (user) {
-      go("home");
+      go(routeNames.home);
     }
   }, [user, go]);
 
