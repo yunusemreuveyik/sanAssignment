@@ -1,7 +1,7 @@
 import React from "react";
 import { useQuery } from "@tanstack/react-query";
 import { fetchCommentsByPostId } from "../../api/posts";
-import "./postCommentsTab.scss";
+import "./postComments.scss";
 
 const PostComments: React.FC<{ postId: string }> = ({ postId }) => {
   const { data: comments, isLoading } = useQuery({

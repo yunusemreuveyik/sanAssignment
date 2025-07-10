@@ -2,11 +2,11 @@ import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { fetchPostById } from "../../api/posts";
-import PostCommentsTab from "../../components/postCommentsTab/postCommentsTab";
-import EditPost from "../editPost/editPost";
+import EditPost from "../../components/editPost/editPost";
 import { useAuth } from "../../api/useAuth";
 import { hasPermission } from "../../routes/pagePermissions";
 import "./singlePostPage.scss";
+import PostComments from "../../components/postComments/postComments";
 
 const SinglePostPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -49,7 +49,7 @@ const SinglePostPage: React.FC = () => {
       <div className="single-post__content">
         {activeTab === "edit" && canEdit && <EditPost post={post} />}
         {activeTab === "comments" && canViewComments && (
-          <PostCommentsTab postId={id!} />
+          <PostComments postId={id!} />
         )}
       </div>
     </div>
