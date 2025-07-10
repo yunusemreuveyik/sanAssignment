@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useAuth } from "../../api/useAuth";
-import { useNav } from "../../nav";
+import { useNav } from "../../routes/nav";
 
 const LoginPage: React.FC = () => {
   const { login, user } = useAuth();

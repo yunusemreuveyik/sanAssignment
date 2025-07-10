@@ -1,10 +1,11 @@
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "./api/useAuth"; // Adjust if path differs
-import type { RouteConfig } from "./models/routeConfigModel";
-import { routes } from "./routes/routes";
+import { useAuth } from "../api/useAuth";
+import type { RouteConfig } from "../models/routeConfigModel";
+import { routes } from "./routes";
 
 type Params = Record<string, any>;
 
+// Generate nav object automatically from routes
 const nav = routes.reduce((acc, route) => {
   acc[route.name] = {
     get: (params?: Params) => {
@@ -20,7 +21,7 @@ const nav = routes.reduce((acc, route) => {
   return acc;
 }, {} as Record<string, { get: (params?: Params) => string }>);
 
-// ✅ Custom hook to navigate with permission checking
+// ✅ Custom hook for navigation with permission checking and go method
 export const useNav = () => {
   const navigate = useNavigate();
   const { user } = useAuth();
@@ -35,7 +36,6 @@ export const useNav = () => {
       return;
     }
 
-    // 🔥 Only check permissions if the route has defined permissions
     if (
       route.permissions &&
       route.permissions.length > 0 &&
