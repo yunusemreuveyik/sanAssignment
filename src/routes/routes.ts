@@ -1,5 +1,6 @@
 import { lazy } from "react";
 import type { RouteConfig } from "../models/routeConfigModel";
+import LoginPage from "../pages/loginPage/loginPage";
 
 export const routeNames = {
   login: "login",
@@ -24,7 +25,7 @@ export const routes: RouteConfig[] = [
     name: routeNames.login,
     path: "/login",
     renderer: "element",
-    component: lazy(() => import("../pages/loginPage/loginPage")),
+    component: LoginPage, // direct import, not lazy
     translations: ["loginPage.en.json", "loginPage.tr.json"],
   },
   {

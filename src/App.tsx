@@ -1,7 +1,7 @@
 import { Routes, Route, Navigate } from "react-router-dom";
 import { routeNames, routes } from "./routes/routes";
 import { Suspense } from "react";
-import ProtectedRoute from "./components/protextedRoute/protectedRoute";
+import ProtectedRoute from "./components/protectedRoute/protectedRoute";
 import Navbar from "./components/navbar/navbar";
 import { usePrefetchTranslations } from "./assets/languages/usePrefetchTranslations";
 
