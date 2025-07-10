@@ -31,7 +31,7 @@ export const routes: RouteConfig[] = [
     path: "/",
     renderer: "lazy",
     component: lazy(() => import("../pages/homePage/homePage")),
-    permissions: ["VIEW_POSTS", "VIEW_COMMENTS"],
+    permissions: [],
   },
   {
     name: routeNames.posts,
@@ -46,13 +46,6 @@ export const routes: RouteConfig[] = [
     renderer: "lazy",
     component: lazy(() => import("../pages/singlePostPage/singlePostPage")),
     permissions: ["VIEW_POSTS"],
-  },
-  {
-    name: routeNames.editPost,
-    path: "/posts/:id/edit",
-    renderer: "lazy",
-    component: lazy(() => import("../pages/editPostPage/editPostPage")),
-    permissions: ["EDIT_POST"],
   },
   {
     name: routeNames.createPost,

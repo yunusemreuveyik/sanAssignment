@@ -1,0 +1,22 @@
+.single-post {
+  padding: 2rem;
+
+  h1 {
+    margin-bottom: 1rem;
+  }
+
+  &__tabs {
+    button {
+      margin-right: 1rem;
+      padding: 0.5rem 1rem;
+      &.active {
+        background-color: #4a90e2;
+        color: white;
+      }
+    }
+  }
+
+  &__content {
+    margin-top: 1rem;
+  }
+}

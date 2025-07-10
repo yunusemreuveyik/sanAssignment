@@ -5,7 +5,13 @@ const USER: User = {
   id: "1",
   name: "John Doe",
   email: "john.doe@example.com",
-  permissions: ["VIEW_POSTS", "VIEW_COMMENTS"],
+  permissions: [
+    "VIEW_POSTS",
+    "VIEW_COMMENTS",
+    "EDIT_POST",
+    "DELETE_POST",
+    "CREATE_POST",
+  ],
 };
 
 export const useAuth = () => {

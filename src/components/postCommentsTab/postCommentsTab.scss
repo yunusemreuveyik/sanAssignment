@@ -1,0 +1,31 @@
+.comments-tab {
+  h2 {
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 0.5rem;
+  }
+
+  &__list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  &__item {
+    background: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+
+    .comments-tab__body {
+      margin-bottom: 0.5rem;
+    }
+
+    .comments-tab__author {
+      font-size: 0.85rem;
+      color: #666;
+    }
+  }
+}

@@ -21,7 +21,6 @@ const nav = routes.reduce((acc, route) => {
   return acc;
 }, {} as Record<string, { get: (params?: Params) => string }>);
 
-// ✅ Custom hook for navigation with permission checking and go method
 export const useNav = () => {
   const navigate = useNavigate();
   const { user } = useAuth();
@@ -48,5 +47,14 @@ export const useNav = () => {
     navigate(nav[routeName].get(params));
   };
 
-  return { go, get: nav };
+  const get = (routeName: string, params?: Record<string, any>) => {
+    const routeGetter = nav[routeName];
+    if (!routeGetter) {
+      console.error(`Route "${routeName}" not found`);
+      return null;
+    }
+    return routeGetter.get(params);
+  };
+
+  return { go, get };
 };
