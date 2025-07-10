@@ -3,25 +3,28 @@ import { routeNames, routes } from "./routes/routes";
 import { Suspense } from "react";
 import ProtectedRoute from "./components/protectedRoute/protectedRoute";
 import Navbar from "./components/navbar/navbar";
-import { usePrefetchTranslations } from "./assets/languages/usePrefetchTranslations";
+import RouteLoader from "./routes/routeLoader";
 
 export default function App() {
-  usePrefetchTranslations();
   return (
     <div className="flex flex-col min-h-screen">
       <main className="flex-grow">
-        <Suspense fallback={<div>Loading...</div>}>
+        <Suspense fallback={<div>Loading app...</div>}>
           <Routes>
             {routes.map((route) => {
               const Component = route.component;
 
               const element =
                 route.name === "login" ? (
-                  <Component />
+                  <RouteLoader route={route}>
+                    <Component />
+                  </RouteLoader>
                 ) : (
                   <ProtectedRoute>
                     <Navbar />
-                    <Component />
+                    <RouteLoader route={route}>
+                      <Component />
+                    </RouteLoader>
                   </ProtectedRoute>
                 );
 

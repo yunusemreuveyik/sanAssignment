@@ -4,12 +4,11 @@ import { initReactI18next } from "react-i18next";
 i18n.use(initReactI18next).init({
   lng: "tr",
   fallbackLng: "tr",
-  ns: [], // initially no namespaces
-  defaultNS: "loginPage", // fallback namespace if not loaded yet
+  ns: [], // no initial namespace
   interpolation: {
     escapeValue: false,
   },
-  resources: {}, // will load dynamically
+  resources: {},
 });
 
 export default i18n;

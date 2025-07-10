@@ -5,7 +5,7 @@ export const prefetchTranslation = async (fileName: string): Promise<void> => {
     console.log(`Prefetching translation file: ${fileName}`);
 
     const [namespace, langWithExt] = fileName.split(".");
-    const lang = langWithExt.split(".")[0]; // e.g. "en"
+    const lang = langWithExt.split(".")[0];
 
     // Skip if already loaded
     if (i18n.hasResourceBundle(lang, namespace)) {
@@ -14,7 +14,6 @@ export const prefetchTranslation = async (fileName: string): Promise<void> => {
     }
 
     const response = await fetch(`/locales/${lang}/${namespace}.json`);
-
     if (!response.ok) {
       throw new Error(`Failed to fetch ${fileName}`);
     }
@@ -24,8 +23,13 @@ export const prefetchTranslation = async (fileName: string): Promise<void> => {
     i18n.addResourceBundle(lang, namespace, translationData, true, true);
     console.log(`Loaded translations for ${namespace} [${lang}]`);
 
-    // ✅ Force reload namespaces if needed
+    // ✅ Load namespace
     await i18n.loadNamespaces(namespace);
+
+    // ✅ Set namespace as default if it is the loginPage
+    if (namespace === "loginPage") {
+      i18n.setDefaultNamespace(namespace);
+    }
   } catch (err) {
     console.error(`Error prefetching ${fileName}:`, err);
   }
