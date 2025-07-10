@@ -1,16 +1,28 @@
 import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
 
+// Import navbar translations directly
+import navbarTR from "../../../public/locales/tr/navbar.json";
+import navbarEN from "../../../public/locales/en/navbar.json";
+
 i18n.use(initReactI18next).init({
   lng: "tr",
   fallbackLng: "tr",
-  ns: [], // no initial namespace, loaded dynamically
+  ns: ["navbar"], // preload navbar namespace
+  defaultNS: "navbar",
   interpolation: {
     escapeValue: false,
   },
-  resources: {},
+  resources: {
+    tr: {
+      navbar: navbarTR,
+    },
+    en: {
+      navbar: navbarEN,
+    },
+  },
   react: {
-    useSuspense: true, // enables Suspense fallback
+    useSuspense: true,
   },
 });
 

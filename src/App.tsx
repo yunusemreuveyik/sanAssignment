@@ -5,12 +5,13 @@ import ProtectedRoute from "./components/protectedRoute/protectedRoute";
 import Navbar from "./components/navbar/navbar";
 import RouteLoader from "./routes/routeLoader";
 import "./assets/languages/i18n"; // Ensure i18n is initialized
+import Loader from "./components/loader/loader";
 
 export default function App() {
   return (
     <div className="flex flex-col min-h-screen">
       <main className="flex-grow">
-        <Suspense fallback={<div>Loading app...</div>}>
+        <Suspense fallback={<Loader />}>
           <Routes>
             {routes.map((route) => {
               const Component = route.component;

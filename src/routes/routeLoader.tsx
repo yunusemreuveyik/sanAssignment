@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import type { RouteConfig } from "../models/routeConfigModel";
 import { loadRouteResources } from "./loadRouteResources";
+import Loader from "../components/loader/loader";
 
 /**
  * RouteLoader blocks rendering until route resources (e.g. translations) are loaded.
@@ -27,7 +28,7 @@ const RouteLoader: React.FC<{
     };
   }, [route]);
 
-  if (!loaded) return <div>Loading translations...</div>;
+  if (!loaded) return <Loader />;
 
   return <>{children}</>;
 };

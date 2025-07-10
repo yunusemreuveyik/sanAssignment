@@ -5,10 +5,12 @@ import { Link } from "react-router-dom";
 import { routes } from "../../routes/routes";
 import "./navbar.scss";
 import { hasPermission } from "../../routes/pagePermissions";
+import { useTranslation } from "react-i18next";
 
 const Navbar: React.FC = () => {
   const { logout, user } = useAuth();
   const { go, get } = useNav();
+  const { t } = useTranslation("navbar");
 
   const handleLogout = () => {
     logout();
@@ -16,16 +18,16 @@ const Navbar: React.FC = () => {
   };
 
   const navLinks = [
-    { label: "Home", routeName: "home" },
-    { label: "Posts List", routeName: "posts" },
-    { label: "Create Post", routeName: "createPost" },
+    { label: t("home"), routeName: "home" },
+    { label: t("postsList"), routeName: "posts" },
+    { label: t("createPost"), routeName: "createPost" },
   ];
 
   return (
     <nav className="navbar">
       <div className="navbar__left">
         <div className="navbar__brand">
-          {get("home") && <Link to={get("home")!}>SAN</Link>}
+          {get("home") && <Link to={get("home")!}>{t("brand")}</Link>}
         </div>
         <ul className="navbar__links">
           {navLinks.map((link) => {
@@ -49,9 +51,13 @@ const Navbar: React.FC = () => {
       </div>
 
       <div className="navbar__right">
-        {user && <span className="navbar__user">Hello, {user.name}</span>}
+        {user && (
+          <span className="navbar__user">
+            {t("hello")}, {user.name}
+          </span>
+        )}
         <button className="navbar__logout" onClick={handleLogout}>
-          Logout
+          {t("logout")}
         </button>
       </div>
     </nav>
