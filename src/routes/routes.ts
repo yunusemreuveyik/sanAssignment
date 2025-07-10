@@ -25,6 +25,7 @@ export const routes: RouteConfig[] = [
     path: "/login",
     renderer: "element",
     component: lazy(() => import("../pages/loginPage/loginPage")),
+    translations: ["loginPage.en.json", "loginPage.tr.json"],
   },
   {
     name: routeNames.home,
@@ -32,6 +33,7 @@ export const routes: RouteConfig[] = [
     renderer: "lazy",
     component: lazy(() => import("../pages/homePage/homePage")),
     permissions: [],
+    translations: ["homePage.en.json", "homePage.tr.json"],
   },
   {
     name: routeNames.posts,
@@ -39,6 +41,7 @@ export const routes: RouteConfig[] = [
     renderer: "lazy",
     component: lazy(() => import("../pages/postListPage/postListPage")),
     permissions: ["VIEW_POSTS"],
+    translations: ["postListPage.en.json", "postListPage.tr.json"],
   },
   {
     name: routeNames.post,
@@ -46,6 +49,7 @@ export const routes: RouteConfig[] = [
     renderer: "lazy",
     component: lazy(() => import("../pages/singlePostPage/singlePostPage")),
     permissions: ["VIEW_POSTS"],
+    translations: ["singlePostPage.en.json", "singlePostPage.tr.json"],
   },
   {
     name: routeNames.createPost,
@@ -53,6 +57,7 @@ export const routes: RouteConfig[] = [
     renderer: "lazy",
     component: lazy(() => import("../pages//createPostPage/createPostPage")),
     permissions: ["CREATE_POST"],
+    translations: ["createPostPage.en.json", "createPostPage.tr.json"],
   },
   {
     name: routeNames.forbidden,
@@ -60,6 +65,7 @@ export const routes: RouteConfig[] = [
     renderer: "element",
     component: lazy(() => import("../pages/403Page/403Page")),
     permissions: [],
+    translations: ["403Page.en.json", "403Page.tr.json"],
   },
   {
     name: routeNames.notFound,
@@ -67,5 +73,6 @@ export const routes: RouteConfig[] = [
     renderer: "element",
     component: lazy(() => import("../pages/404Page/404Page")),
     permissions: [],
+    translations: ["404Page.en.json", "404Page.tr.json"],
   },
 ];
