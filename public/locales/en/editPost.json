@@ -1,0 +1,9 @@
+{
+  "titleLabel": "Title",
+  "titlePlaceholder": "Enter post title",
+  "bodyLabel": "Body",
+  "bodyPlaceholder": "Enter post body",
+  "saveButton": "Save",
+  "updateSuccess": "Post updated successfully!",
+  "updateError": "Failed to update post."
+}

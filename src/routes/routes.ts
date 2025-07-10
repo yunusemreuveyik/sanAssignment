@@ -50,7 +50,14 @@ export const routes: RouteConfig[] = [
     renderer: "lazy",
     component: lazy(() => import("../pages/singlePostPage/singlePostPage")),
     permissions: ["VIEW_POSTS"],
-    // translations: ["singlePostPage.en.json", "singlePostPage.tr.json"],
+    translations: [
+      "singlePostPage.en.json",
+      "singlePostPage.tr.json",
+      "editPost.en.json",
+      "editPost.tr.json",
+      "postComments.en.json",
+      "postComments.tr.json",
+    ],
   },
   {
     name: routeNames.createPost,

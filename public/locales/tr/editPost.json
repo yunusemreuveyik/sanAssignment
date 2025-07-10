@@ -1,0 +1,9 @@
+{
+  "titleLabel": "Başlık",
+  "titlePlaceholder": "Gönderi başlığı girin",
+  "bodyLabel": "İçerik",
+  "bodyPlaceholder": "Gönderi içeriği girin",
+  "saveButton": "Kaydet",
+  "updateSuccess": "Gönderi başarıyla güncellendi!",
+  "updateError": "Gönderi güncellenemedi."
+}

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { updatePostById } from "../../api/posts";
 import "./editPost.scss";
+import { useTranslation } from "react-i18next";
 
 interface Post {
   id: string;
@@ -10,6 +11,7 @@ interface Post {
 }
 
 const EditPost: React.FC<{ post: Post }> = ({ post }) => {
+  const { t } = useTranslation("editPost");
   const [title, setTitle] = useState(post.title);
   const [body, setBody] = useState(post.body);
   const queryClient = useQueryClient();
@@ -29,24 +31,30 @@ const EditPost: React.FC<{ post: Post }> = ({ post }) => {
   return (
     <div className="edit-post">
       <div className="edit-post__field">
-        <label>Title</label>
+        <label>{t("titleLabel")}</label>
         <input
           value={title}
           onChange={(e) => setTitle(e.target.value)}
-          placeholder="Enter post title"
+          placeholder={t("titlePlaceholder")}
         />
       </div>
       <div className="edit-post__field">
-        <label>Body</label>
+        <label>{t("bodyLabel")}</label>
         <textarea
           value={body}
           onChange={(e) => setBody(e.target.value)}
-          placeholder="Enter post body"
+          placeholder={t("bodyPlaceholder")}
         />
       </div>
       <button className="edit-post__save" onClick={handleSave}>
-        Save
+        {t("saveButton")}
       </button>
+      {updateMutation.isSuccess && (
+        <p className="edit-post__success">{t("updateSuccess")}</p>
+      )}
+      {updateMutation.isError && (
+        <p className="edit-post__error">{t("updateError")}</p>
+      )}
     </div>
   );
 };

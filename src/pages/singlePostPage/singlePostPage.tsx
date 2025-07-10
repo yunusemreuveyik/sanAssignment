@@ -7,19 +7,21 @@ import { useAuth } from "../../api/useAuth";
 import { hasPermission } from "../../routes/pagePermissions";
 import "./singlePostPage.scss";
 import PostComments from "../../components/postComments/postComments";
+import { useTranslation } from "react-i18next";
 
 const SinglePostPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const [activeTab, setActiveTab] = useState<"edit" | "comments">("edit");
   const { user } = useAuth();
+  const { t } = useTranslation("singlePostPage");
 
   const { data: post, isLoading: postLoading } = useQuery({
     queryKey: ["post", id],
     queryFn: () => fetchPostById(id!),
   });
 
-  if (postLoading) return <p>Loading post...</p>;
-  if (!post) return <p>Post not found</p>;
+  if (postLoading) return <p>{t("loadingPost")}</p>;
+  if (!post) return <p>{t("postNotFound")}</p>;
 
   const canEdit = hasPermission(user, ["EDIT_POST"]);
   const canViewComments = hasPermission(user, ["VIEW_COMMENTS"]);
@@ -33,7 +35,7 @@ const SinglePostPage: React.FC = () => {
             className={activeTab === "edit" ? "active" : ""}
             onClick={() => setActiveTab("edit")}
           >
-            Edit Post
+            {t("editPostTab")}
           </button>
         )}
         {canViewComments && (
@@ -41,7 +43,7 @@ const SinglePostPage: React.FC = () => {
             className={activeTab === "comments" ? "active" : ""}
             onClick={() => setActiveTab("comments")}
           >
-            Post Comments
+            {t("postCommentsTab")}
           </button>
         )}
       </div>
