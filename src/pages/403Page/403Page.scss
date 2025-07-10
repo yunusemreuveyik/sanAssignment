@@ -1,22 +1,22 @@
-.notfound {
+.forbidden {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   height: 100vh;
-  background-color: #f8f9fa;
+  background-color: #fff5f5; // soft light red background
   text-align: center;
 
   &__title {
     font-size: 3rem;
     font-weight: bold;
-    color: #dc3545; // elegant red tone
+    color: #c82333; // elegant strong red
     margin-bottom: 1rem;
   }
 
   &__message {
     font-size: 1.2rem;
-    color: #6c757d; // subtle gray
+    color: #6c757d; // subtle gray for readability
     max-width: 400px;
   }
 }

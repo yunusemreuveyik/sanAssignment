@@ -1,12 +1,15 @@
 import React from "react";
+import "./404Pages.scss";
 
-const Forbidden: React.FC = () => {
+const NotFound: React.FC = () => {
   return (
-    <div className="flex flex-col items-center justify-center h-screen">
-      <h1 className="text-3xl font-bold text-red-500">403 - Forbidden</h1>
-      <p className="mt-2">You don't have permission to access this page.</p>
+    <div className="notfound">
+      <h1 className="notfound__title">404 - Page Not Found</h1>
+      <p className="notfound__message">
+        Sorry, the page you are looking for does not exist.
+      </p>
     </div>
   );
 };
 
-export default Forbidden;
+export default NotFound;

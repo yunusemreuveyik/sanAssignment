@@ -58,6 +58,14 @@ export const routes: RouteConfig[] = [
     name: routeNames.forbidden,
     path: "/403",
     renderer: "element",
+    component: lazy(() => import("../pages/403Page/403Page")),
+    permissions: [],
+  },
+  {
+    name: routeNames.notFound,
+    path: "/404",
+    renderer: "element",
     component: lazy(() => import("../pages/404Page/404Page")),
+    permissions: [],
   },
 ];

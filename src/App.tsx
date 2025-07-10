@@ -7,7 +7,6 @@ import Navbar from "./components/navbar/navbar";
 export default function App() {
   return (
     <div className="flex flex-col min-h-screen">
-      <Navbar />
       <main className="flex-grow">
         <Suspense fallback={<div>Loading...</div>}>
           <Routes>
@@ -19,6 +18,7 @@ export default function App() {
                   <Component />
                 ) : (
                   <ProtectedRoute>
+                    <Navbar />
                     <Component />
                   </ProtectedRoute>
                 );
@@ -27,7 +27,7 @@ export default function App() {
                 <Route key={route.name} path={route.path} element={element} />
               );
             })}
-            <Route path="*" element={<Navigate to="/403" />} />
+            <Route path="*" element={<Navigate to="/404" />} />
           </Routes>
         </Suspense>
       </main>
