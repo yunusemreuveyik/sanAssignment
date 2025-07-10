@@ -1,0 +1,11 @@
+{
+  "createTitle": "Create New Post",
+  "titleLabel": "Title",
+  "titlePlaceholder": "Enter post title",
+  "bodyLabel": "Body",
+  "bodyPlaceholder": "Enter post body",
+  "createButton": "Create Post",
+  "creating": "Creating...",
+  "successMessage": "Post created successfully!",
+  "errorMessage": "Failed to create post."
+}

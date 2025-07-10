@@ -1,0 +1,11 @@
+{
+  "createTitle": "Yeni Gönderi Oluştur",
+  "titleLabel": "Başlık",
+  "titlePlaceholder": "Gönderi başlığını girin",
+  "bodyLabel": "İçerik",
+  "bodyPlaceholder": "Gönderi içeriğini girin",
+  "createButton": "Gönderi Oluştur",
+  "creating": "Oluşturuluyor...",
+  "successMessage": "Gönderi başarıyla oluşturuldu!",
+  "errorMessage": "Gönderi oluşturulamadı."
+}

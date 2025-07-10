@@ -7,8 +7,11 @@ import "./postListPage.scss";
 import { hasPermission } from "../../routes/pagePermissions";
 import { deletePostById } from "../../api/posts";
 import { routeNames } from "../../routes/routes";
+import { useTranslation } from "react-i18next";
 
 const PostListPage: React.FC = () => {
+  const { t } = useTranslation("postListPage");
+
   const { data: posts, isLoading, error } = useQuery(postsQueryOptions);
   const { go } = useNav();
   const { user } = useAuth();
@@ -29,21 +32,25 @@ const PostListPage: React.FC = () => {
     deleteMutation.mutate(id);
   };
 
-  if (isLoading) return <p>Loading posts...</p>;
-  if (error) return <p>Error loading posts</p>;
+  if (isLoading) return <p>{t("loadingPosts")}</p>;
+  if (error) return <p>{t("errorPosts")}</p>;
 
   return (
     <div className="posts">
-      <h1>Posts</h1>
+      <h1>{t("postsTitle")}</h1>
       <ul className="posts__list">
         {posts.map((post: any) => (
           <li key={post.id} className="posts__item">
             <span>{post.title}</span>
             {hasPermission(user, ["EDIT_POST"]) && (
-              <button onClick={() => handleEdit(post.id)}>Edit</button>
+              <button onClick={() => handleEdit(post.id)}>
+                {t("editButton")}
+              </button>
             )}
             {hasPermission(user, ["DELETE_POST"]) && (
-              <button onClick={() => handleDelete(post.id)}>Delete</button>
+              <button onClick={() => handleDelete(post.id)}>
+                {t("deleteButton")}
+              </button>
             )}
           </li>
         ))}

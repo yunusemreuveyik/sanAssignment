@@ -3,9 +3,7 @@ import type { RouteConfig } from "../models/routeConfigModel";
 import { loadRouteResources } from "./loadRouteResources";
 
 /**
- * RouteLoader component is responsible for loading the necessary resources
- * for a given route before rendering its children. This is useful for routes
- * that require translations or other resources to be loaded dynamically.
+ * RouteLoader blocks rendering until route resources (e.g. translations) are loaded.
  */
 const RouteLoader: React.FC<{
   route: RouteConfig;
@@ -15,15 +13,21 @@ const RouteLoader: React.FC<{
 
   useEffect(() => {
     let isMounted = true;
-    loadRouteResources(route).then(() => {
+
+    const load = async () => {
+      setLoaded(false); // ensure reset if route changes
+      await loadRouteResources(route);
       if (isMounted) setLoaded(true);
-    });
+    };
+
+    load();
+
     return () => {
       isMounted = false;
     };
   }, [route]);
 
-  if (!loaded) return <div>Loading...</div>;
+  if (!loaded) return <div>Loading translations...</div>;
 
   return <>{children}</>;
 };

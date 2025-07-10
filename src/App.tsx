@@ -4,6 +4,7 @@ import { Suspense } from "react";
 import ProtectedRoute from "./components/protectedRoute/protectedRoute";
 import Navbar from "./components/navbar/navbar";
 import RouteLoader from "./routes/routeLoader";
+import "./assets/languages/i18n"; // Ensure i18n is initialized
 
 export default function App() {
   return (

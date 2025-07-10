@@ -1,0 +1,7 @@
+{
+  "postsTitle": "Posts List",
+  "loadingPosts": "Loading posts...",
+  "errorPosts": "Error loading posts.",
+  "editButton": "Edit",
+  "deleteButton": "Delete"
+}

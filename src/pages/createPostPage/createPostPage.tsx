@@ -2,8 +2,11 @@ import React, { useState } from "react";
 import { useMutation } from "@tanstack/react-query";
 import { createPost } from "../../api/posts";
 import "./createPostPage.scss";
+import { useTranslation } from "react-i18next";
 
 const CreatePost: React.FC = () => {
+  const { t } = useTranslation("createPostPage");
+
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
 
@@ -24,38 +27,38 @@ const CreatePost: React.FC = () => {
 
   return (
     <div className="create-post">
-      <h1 className="create-post__title">Create New Post</h1>
+      <h1 className="create-post__title">{t("createTitle")}</h1>
       <form className="create-post__form" onSubmit={handleSubmit}>
         <div className="create-post__field">
-          <label htmlFor="title">Title</label>
+          <label htmlFor="title">{t("titleLabel")}</label>
           <input
             id="title"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
+            placeholder={t("titlePlaceholder")}
             required
           />
         </div>
 
         <div className="create-post__field">
-          <label htmlFor="body">Body</label>
+          <label htmlFor="body">{t("bodyLabel")}</label>
           <textarea
             id="body"
             value={body}
             onChange={(e) => setBody(e.target.value)}
+            placeholder={t("bodyPlaceholder")}
             required
           />
         </div>
 
         <button type="submit" disabled={isLoading}>
-          {isLoading ? "Creating..." : "Create Post"}
+          {isLoading ? t("creating") : t("createButton")}
         </button>
 
         {isSuccess && (
-          <p className="create-post__success">Post created successfully!</p>
+          <p className="create-post__success">{t("successMessage")}</p>
         )}
-        {isError && (
-          <p className="create-post__error">Failed to create post.</p>
-        )}
+        {isError && <p className="create-post__error">{t("errorMessage")}</p>}
       </form>
     </div>
   );
