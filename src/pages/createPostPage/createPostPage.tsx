@@ -13,10 +13,15 @@ const CreatePost: React.FC = () => {
 
   const { mutate, status, isSuccess, isError } = useMutation({
     mutationFn: createPost,
-    onSuccess: async () => {
+    onSuccess: async (newPost) => {
       setTitle("");
       setBody("");
-      queryClient.invalidateQueries({ queryKey: ["posts"] });
+      // we could invalidate queries, but let's directly update the cache this time just for demonstration
+      // ✅ Directly update posts cache with the new post
+      queryClient.setQueryData(["posts"], (old: any) => {
+        if (!old) return [newPost];
+        return [newPost, ...old]; // add to top
+      });
     },
   });
 
