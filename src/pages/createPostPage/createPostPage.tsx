@@ -20,7 +20,7 @@ const CreatePost: React.FC = () => {
       // ✅ Directly update posts cache with the new post
       queryClient.setQueryData(["posts"], (old: any) => {
         if (!old) return [newPost];
-        return [newPost, ...old]; // add to top
+        return [...old, newPost];
       });
     },
   });

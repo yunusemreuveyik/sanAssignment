@@ -31,7 +31,11 @@ export const useAuth = () => {
   };
 
   const logout = () => {
-    queryClient.removeQueries({ queryKey: ["user"] });
+    queryClient.removeQueries(); // removes all cached queries
+    queryClient.clear(); // completely clears cache including mutations
+
+    // If you also have React Query persister:
+    localStorage.removeItem("REACT_QUERY_OFFLINE_CACHE");
   };
 
   return { user, login, logout };

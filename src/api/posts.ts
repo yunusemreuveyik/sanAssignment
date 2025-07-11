@@ -12,7 +12,7 @@ export const createPost = async (newPost: { title: string; body: string }) => {
 };
 
 export const deletePostById = async (id: string) => {
-  const res = await axios.delete(`/posts/${id}`);
+  const res = await axios.delete(`${BASE_URL}/posts/${id}`);
   return res.data;
 };
 

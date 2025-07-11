@@ -19,8 +19,26 @@ const PostListPage: React.FC = () => {
 
   const deleteMutation = useMutation({
     mutationFn: deletePostById,
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: postsQueryOptions.queryKey });
+    // 🔥 Optimistically remove from cache
+    onMutate: async (id: string) => {
+      await queryClient.cancelQueries({ queryKey: postsQueryOptions.queryKey });
+
+      const previousPosts = queryClient.getQueryData(
+        postsQueryOptions.queryKey
+      );
+
+      queryClient.setQueryData(postsQueryOptions.queryKey, (old: any) =>
+        old ? old.filter((p: any) => p.id !== id) : []
+      );
+
+      return { previousPosts };
+    },
+    // ✅ On error, rollback to previous cache state
+    onError: (_err, _id, context) => {
+      queryClient.setQueryData(
+        postsQueryOptions.queryKey,
+        context?.previousPosts
+      );
     },
   });
 
@@ -39,7 +57,7 @@ const PostListPage: React.FC = () => {
     <div className="posts">
       <h1>{t("postsTitle")}</h1>
       <ul className="posts__list">
-        {posts.map((post: any) => (
+        {[...posts].reverse().map((post: any) => (
           <li key={post.id} className="posts__item">
             <span>{post.title}</span>
             {hasPermission(user, ["EDIT_POST"]) && (
