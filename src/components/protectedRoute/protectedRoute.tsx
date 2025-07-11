@@ -1,6 +1,6 @@
 import React from "react";
 import { Navigate, useLocation } from "react-router-dom";
-import { useAuth } from "../../api/useAuth";
+import { useAuth } from "../../api/services/useAuth";
 import { canAccessRoute } from "../../routes/pagePermissions";
 import { routeNames } from "../../routes/routes";
 

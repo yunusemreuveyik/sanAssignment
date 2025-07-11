@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import type { RouteConfig } from "../models/routeConfigModel";
+import type { RouteConfig } from "../api/models/routeConfigModel";
 import { loadRouteResources } from "./loadRouteResources";
 import Loader from "../components/loader/loader";
 

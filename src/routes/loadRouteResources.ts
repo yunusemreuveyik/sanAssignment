@@ -1,5 +1,5 @@
 import { prefetchTranslation } from "../assets/languages/translationsPrefetch";
-import type { RouteConfig } from "../models/routeConfigModel";
+import type { RouteConfig } from "../api/models/routeConfigModel";
 
 export const loadRouteResources = async (route: RouteConfig) => {
   if (route.translations && route.translations.length > 0) {

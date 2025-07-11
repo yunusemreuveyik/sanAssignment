@@ -1,27 +1,35 @@
 import React, { useState } from "react";
 import { useMutation } from "@tanstack/react-query";
-import { createPost } from "../../api/posts";
+import { createPost } from "../../api/services/posts";
 import "./createPostPage.scss";
 import { useTranslation } from "react-i18next";
 import { queryClient } from "../../api/queries/reactQuery";
+import { useToast } from "../../api/services/toastService"; // ✅ import toast hook
+import Spinner from "../../components/buttonLoader/buttonLoader";
 
 const CreatePost: React.FC = () => {
   const { t } = useTranslation("createPostPage");
+  const { triggerToast } = useToast(); // ✅ initialize toast
 
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
 
-  const { mutate, status, isSuccess, isError } = useMutation({
+  const { mutate, status } = useMutation({
     mutationFn: createPost,
     onSuccess: async (newPost) => {
       setTitle("");
       setBody("");
-      // we could invalidate queries, but let's directly update the cache this time just for demonstration
-      // ✅ Directly update posts cache with the new post
+
+      // ✅ Update posts cache with new post
       queryClient.setQueryData(["posts"], (old: any) => {
         if (!old) return [newPost];
         return [...old, newPost];
       });
+
+      triggerToast("success", t("successMessage")); // ✅ show success toast
+    },
+    onError: () => {
+      triggerToast("error", t("errorMessage")); // ✅ show error toast
     },
   });
 
@@ -59,13 +67,8 @@ const CreatePost: React.FC = () => {
         </div>
 
         <button type="submit" disabled={isLoading}>
-          {isLoading ? t("creating") : t("createButton")}
+          {isLoading ? <Spinner size={18} color="gold" /> : t("createButton")}
         </button>
-
-        {isSuccess && (
-          <p className="create-post__success">{t("successMessage")}</p>
-        )}
-        {isError && <p className="create-post__error">{t("errorMessage")}</p>}
       </form>
     </div>
   );

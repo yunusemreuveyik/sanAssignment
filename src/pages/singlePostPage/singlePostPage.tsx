@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
-import { useAuth } from "../../api/useAuth";
+import { useAuth } from "../../api/services/useAuth";
 import { hasPermission } from "../../routes/pagePermissions";
 import "./singlePostPage.scss";
 import EditPost from "../../components/editPost/editPost";

@@ -1,6 +1,6 @@
 import React from "react";
 import { useQuery } from "@tanstack/react-query";
-import { fetchCommentsByPostId } from "../../api/posts";
+import { fetchCommentsByPostId } from "../../api/services/posts";
 import "./postComments.scss";
 import { useTranslation } from "react-i18next";
 

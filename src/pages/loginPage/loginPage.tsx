@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useAuth } from "../../api/useAuth";
+import { useAuth } from "../../api/services/useAuth";
 import { useNav } from "../../routes/nav";
 import { routeNames } from "../../routes/routes";
 import "./loginPage.scss";

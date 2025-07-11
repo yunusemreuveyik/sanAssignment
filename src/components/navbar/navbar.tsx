@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useAuth } from "../../api/useAuth";
+import { useAuth } from "../../api/services/useAuth";
 import { useNav } from "../../routes/nav";
 import { Link } from "react-router-dom";
 import { routes } from "../../routes/routes";

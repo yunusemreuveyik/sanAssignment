@@ -1,5 +1,5 @@
 import { queryOptions } from "@tanstack/react-query";
-import { fetchComments } from "../comments";
+import { fetchComments } from "../services/comments";
 
 export const commentsQueryOptions = queryOptions({
   queryKey: ["comments"],

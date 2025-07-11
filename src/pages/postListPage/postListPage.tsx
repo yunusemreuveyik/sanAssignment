@@ -1,13 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { postsQueryOptions } from "../../api/queries/postQueryOptions";
 import { useNav } from "../../routes/nav";
-import { useAuth } from "../../api/useAuth";
+import { useAuth } from "../../api/services/useAuth";
 import "./postListPage.scss";
 import { hasPermission } from "../../routes/pagePermissions";
-import { deletePostById } from "../../api/posts";
+import { deletePostById } from "../../api/services/posts";
 import { routeNames } from "../../routes/routes";
 import { useTranslation } from "react-i18next";
+import Spinner from "../../components/buttonLoader/buttonLoader";
 
 const PostListPage: React.FC = () => {
   const { t } = useTranslation("postListPage");
@@ -17,10 +18,12 @@ const PostListPage: React.FC = () => {
   const { user } = useAuth();
   const queryClient = useQueryClient();
 
+  const [deletingId, setDeletingId] = useState<string | null>(null);
+
   const deleteMutation = useMutation({
     mutationFn: deletePostById,
-    // 🔥 Optimistically remove from cache
     onMutate: async (id: string) => {
+      setDeletingId(id); // ✅ set deleting id
       await queryClient.cancelQueries({ queryKey: postsQueryOptions.queryKey });
 
       const previousPosts = queryClient.getQueryData(
@@ -33,12 +36,14 @@ const PostListPage: React.FC = () => {
 
       return { previousPosts };
     },
-    // ✅ On error, rollback to previous cache state
     onError: (_err, _id, context) => {
       queryClient.setQueryData(
         postsQueryOptions.queryKey,
         context?.previousPosts
       );
+    },
+    onSettled: () => {
+      setDeletingId(null); // ✅ clear deleting id when done
     },
   });
 
@@ -66,8 +71,15 @@ const PostListPage: React.FC = () => {
               </button>
             )}
             {hasPermission(user, ["DELETE_POST"]) && (
-              <button onClick={() => handleDelete(post.id)}>
-                {t("deleteButton")}
+              <button
+                onClick={() => handleDelete(post.id)}
+                disabled={deletingId === post.id}
+              >
+                {deletingId === post.id ? (
+                  <Spinner size={16} color="gold" />
+                ) : (
+                  t("deleteButton")
+                )}
               </button>
             )}
           </li>

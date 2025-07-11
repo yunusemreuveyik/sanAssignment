@@ -1,8 +1,8 @@
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "../api/useAuth";
+import { useAuth } from "../api/services/useAuth";
 import { routes } from "./routes";
 import { generateNav } from "./navUtil";
-import type { RouteConfig } from "../models/routeConfigModel";
+import type { RouteConfig } from "../api/models/routeConfigModel";
 
 export const useNav = () => {
   const navigate = useNavigate();

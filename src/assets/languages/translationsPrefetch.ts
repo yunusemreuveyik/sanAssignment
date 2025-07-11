@@ -2,14 +2,14 @@ import i18n from "./i18n";
 
 export const prefetchTranslation = async (fileName: string): Promise<void> => {
   try {
-    console.log(`Prefetching translation file: ${fileName}`);
+    // `Prefetching translation file: ${fileName}`
 
     const [namespace, langWithExt] = fileName.split(".");
     const lang = langWithExt.split(".")[0];
 
     // Skip if already loaded
     if (i18n.hasResourceBundle(lang, namespace)) {
-      console.log(`Translation for ${namespace} already loaded`);
+      // `Translation for ${namespace} already loaded`
       return;
     }
 
@@ -21,7 +21,7 @@ export const prefetchTranslation = async (fileName: string): Promise<void> => {
     const translationData = await response.json();
 
     i18n.addResourceBundle(lang, namespace, translationData, true, true);
-    console.log(`Loaded translations for ${namespace} [${lang}]`);
+    // `Loaded translations for ${namespace} [${lang}]`
 
     // ✅ Load namespace
     await i18n.loadNamespaces(namespace);

@@ -1,5 +1,5 @@
 import { routes } from "./routes";
-import type { User, Permission } from "../models/userModel";
+import type { User, Permission } from "../api/models/userModel";
 
 export const findRouteByPath = (path: string) => {
   // Loop through all routes to find a match

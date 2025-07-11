@@ -1,5 +1,5 @@
 import { lazy } from "react";
-import type { RouteConfig } from "../models/routeConfigModel";
+import type { RouteConfig } from "../api/models/routeConfigModel";
 import LoginPage from "../pages/loginPage/loginPage";
 
 export const routeNames = {

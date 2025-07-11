@@ -8,6 +8,7 @@ import { BrowserRouter } from "react-router-dom";
 import { persistQueryClient } from "@tanstack/react-query-persist-client";
 import { createSyncStoragePersister } from "@tanstack/query-sync-storage-persister";
 import { queryClient } from "./api/queries/reactQuery";
+import { ToastProvider } from "./api/services/toastService";
 
 // ✅ Create a persister using localStorage
 const localStoragePersister = createSyncStoragePersister({
@@ -23,8 +24,10 @@ persistQueryClient({
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <QueryClientProvider client={queryClient}>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
+    <ToastProvider>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </ToastProvider>
   </QueryClientProvider>
 );
