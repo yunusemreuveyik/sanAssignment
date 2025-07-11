@@ -3,6 +3,7 @@ import { useMutation } from "@tanstack/react-query";
 import { createPost } from "../../api/posts";
 import "./createPostPage.scss";
 import { useTranslation } from "react-i18next";
+import { queryClient } from "../../api/queries/reactQuery";
 
 const CreatePost: React.FC = () => {
   const { t } = useTranslation("createPostPage");
@@ -12,9 +13,10 @@ const CreatePost: React.FC = () => {
 
   const { mutate, status, isSuccess, isError } = useMutation({
     mutationFn: createPost,
-    onSuccess: () => {
+    onSuccess: async () => {
       setTitle("");
       setBody("");
+      queryClient.invalidateQueries({ queryKey: ["posts"] });
     },
   });
 
