@@ -36,18 +36,20 @@ export const ToastProvider: React.FC<{
   return (
     <ToastContext.Provider value={{ triggerToast }}>
       {children}
-      <div className={`toast-container ${position}`}>
-        {toasts.map((toast) => (
-          <Toast
-            key={toast.id}
-            type={toast.type}
-            message={toast.message}
-            onClose={() =>
-              setToasts((prev) => prev.filter((t) => t.id !== toast.id))
-            }
-          />
-        ))}
-      </div>
+      {toasts.length > 0 && ( // ✅ only render container if there are toasts
+        <div className={`toast-container ${position}`}>
+          {toasts.map((toast) => (
+            <Toast
+              key={toast.id}
+              type={toast.type}
+              message={toast.message}
+              onClose={() =>
+                setToasts((prev) => prev.filter((t) => t.id !== toast.id))
+              }
+            />
+          ))}
+        </div>
+      )}
     </ToastContext.Provider>
   );
 };
