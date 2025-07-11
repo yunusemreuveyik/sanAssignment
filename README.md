@@ -1,69 +1,112 @@
-# React + TypeScript + Vite
+📝 SAN React Admin Panel
+A React + TypeScript + React Query admin panel project to manage posts with authentication, role-based access, localization, and responsive design.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Install
 
-Currently, two official plugins are available:
+npm install
+npm start
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+🚀 Features
+✅ Authentication & Authorization
 
-## Expanding the ESLint configuration
+Login system (mocked API)
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+Role-based route protection (ProtectedRoute)
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+Permission checks (hasPermission utility)
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+✅ Posts Management
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+List posts with edit & delete options
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Create new posts with live cache updates
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+Edit post with cache updates across views
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+Delete posts with immediate cache removal
+
+✅ React Query Integration
+
+Global QueryClient setup with persisted cache
+
+invalidateQueries and setQueryData patterns
+
+Uses TanStack React Query v4 for efficient data management
+
+✅ Routing
+
+React Router v6
+
+Lazy-loaded pages with fallback loaders
+
+Custom route loader supporting per-route translations
+
+✅ i18n Internationalization
+
+Configured with react-i18next
+
+Dynamic namespace loading per route
+
+Language switcher (EN/TR) component with active state
+
+✅ UI & Styling
+
+SCSS modules for component styles
+
+Responsive navbar with hamburger menu
+
+Mobile-first design adjustments
+
+✅ Components
+
+Navbar with conditional links and language switcher
+
+Posts list page
+
+Single post page with edit and comments tabs
+
+Loader and error states
+
+✅ Architecture
+
+Modular folder structure
+
+Separated API services under /api
+
+Query options abstracted under /api/queries
+
+🏗 Tech Stack
+React with TypeScript
+
+React Router v6
+
+TanStack React Query v4
+
+React i18next
+
+SCSS modules
+
+Axios
+
+🧩 Key Design Decisions
+React Query for state & server sync
+
+staleTime configured based on page needs
+
+Manual cache updates on create/edit/delete for optimal UX
+
+Dynamic i18n loading
+
+Route-based namespaces for performance
+
+Role-based routes
+
+hasPermission utility decouples logic from UI
+
+👨‍💻 Author
+Yunus Emre Üveyik
+
+React & Frontend Engineer
+
+📄 License
+MIT
